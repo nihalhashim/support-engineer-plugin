@@ -1,0 +1,16 @@
+{
+  "name": "cursor-support-plugin",
+  "version": "1.0.0",
+  "description": "Support-engineer skills for product support: understand requirements first, then answer from docs; plugin support included; extensible for themes, SDKs, and other product types.",
+  "author": {
+    "name": "AccessYes Support"
+  },
+  "keywords": [
+    "support",
+    "wordpress",
+    "plugin",
+    "documentation",
+    "customer-support"
+  ],
+  "skills": "skills/"
+}
