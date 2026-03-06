@@ -1,6 +1,8 @@
-# Cursor Support Plugin
+# Support Engineer Plugin
 
-A Cursor plugin for **plugin and product maintainers** who want AI-assisted customer and developer support. It adds **support-engineer skills** so the agent behaves like a custom support engineer: it understands the user's requirement first (empathy, critical analysis), then answers from your project's support doc and only parses code when the doc is insufficient.
+A **tool-agnostic** plugin for **plugin and product maintainers** who want AI-assisted customer and developer support. It adds **support-engineer skills** so the agent behaves like a custom support engineer: it understands the user's requirement first (empathy, critical analysis), then answers from your project's support doc and only parses code when the doc is insufficient.
+
+**Currently:** Install and use in **Cursor**. Support for other AI coding tools (e.g. Claude Code, Windsurf) may be added in future.
 
 **Purpose:** Reduce support load by having the AI answer from a single source of truth (`PLUGIN-SUPPORT-DOCS.md`) and suggest `functions.php` snippets or minimal plugin changes instead of editing core files.
 
@@ -14,19 +16,19 @@ A Cursor plugin for **plugin and product maintainers** who want AI-assisted cust
 
 ## Install (GitHub integration)
 
-Use the **repository URL** — you do not add a specific file. Cursor uses the whole repo to load the plugin and its skills.
+Use the **repository URL** — you do not add a specific file. Your IDE/tool uses the whole repo to load the plugin and its skills.
 
 1. **Get the repo URL**  
    Use the public GitHub URL of this plugin, e.g.  
-   `https://github.com/your-org/cursor-support-plugin`
+   `https://github.com/your-org/support-engineer-plugin`
 
-2. **Add it as a Remote Rule in Cursor**  
+2. **Add it as a Remote Rule (in Cursor)**  
    - Open **Cursor Settings** (Cmd+Shift+J on Mac, Ctrl+Shift+J on Windows/Linux).  
    - Go to **Rules**.  
    - Click **Add Rule**.  
    - Choose **Remote Rule (GitHub)**.  
    - Paste the **repository URL** (the repo root URL above), not a path to a file.  
-   - Save. Cursor will load the plugin from the repo; the `plugin-support-agent` skill will then be available.
+   - Save. The plugin and `plugin-support-agent` skill will then be available.
 
 3. **Repo structure**  
    The repo root should contain `.cursor-plugin/plugin.json` and `skills/` (with `skills/plugin-support-agent/SKILL.md`). Cloning or adding the repo URL as above uses this structure so no extra steps are needed.
@@ -35,18 +37,17 @@ Use the **repository URL** — you do not add a specific file. Cursor uses the w
 
 If you prefer not to use GitHub:
 
-1. Copy the **folder** `skills/plugin-support-agent/` (including its `SKILL.md`) into your project’s `.cursor/skills/` directory.
+1. Copy the **folder** `skills/plugin-support-agent/` (including its `SKILL.md`) into your project’s skills directory (e.g. `.cursor/skills/` in Cursor).
 2. The agent will discover the skill when working in that project.
 
-### From Cursor Marketplace (optional, when published)
+### From marketplace (optional, when published)
 
-1. Open Cursor Settings → **Rules** or the marketplace panel.
-2. Search for **Cursor Support Plugin** and install.
+In Cursor: Settings → **Rules** or the marketplace panel → search for **Support Engineer Plugin** and install.
 
 ## Using the plugin support skill
 
 1. In your plugin (or a workspace that contains it), add a support doc: **`PLUGIN-SUPPORT-DOCS.md`** in the project root or plugin directory. Describe features, hooks, settings, and FAQs.
-2. Open the project in Cursor and ask support-style questions (e.g. “How do I hide the widget on the contact page?”, “Can I disable module X via code?”).
+2. Open the project in your IDE and ask support-style questions (e.g. “How do I hide the widget on the contact page?”, “Can I disable module X via code?”).
 3. The agent will: understand your need first, then answer from the doc, and only look at code when necessary. For customisation it will prefer `functions.php` snippets over editing plugin core.
 
 ## Optional: WordPress agent skills
@@ -57,7 +58,7 @@ For better WordPress code suggestions, install [WordPress/agent-skills](https://
 
 This plugin is structured so you can add more product-type skills later:
 
-- Add a new skill under `skills/<skill-name>/` with a `SKILL.md` (see [Cursor skills docs](https://cursor.com/docs/context/skills)).
+- Add a new skill under `skills/<skill-name>/` with a `SKILL.md` (see [Agent Skills format](https://cursor.com/docs/context/skills) — used by Cursor and other tools).
 - The manifest’s `"skills": "skills/"` will discover all such folders. No need to list each skill in `plugin.json`.
 
 Example future skills: theme support (e.g. `THEME-SUPPORT-DOCS.md`), SDK/API support, or other product-specific support workflows.
