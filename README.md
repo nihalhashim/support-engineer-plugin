@@ -1,12 +1,14 @@
 # Cursor Support Plugin
 
-Cursor plugin that adds **support-engineer skills** for handling customer and developer support. The agent acts as a custom support engineer: understands the requirement first (empathy, critical analysis), then answers from your support doc and only parses code when needed.
+A Cursor plugin for **plugin and product maintainers** who want AI-assisted customer and developer support. It adds **support-engineer skills** so the agent behaves like a custom support engineer: it understands the user's requirement first (empathy, critical analysis), then answers from your project's support doc and only parses code when the doc is insufficient.
+
+**Purpose:** Reduce support load by having the AI answer from a single source of truth (`PLUGIN-SUPPORT-DOCS.md`) and suggest `functions.php` snippets or minimal plugin changes instead of editing core files.
 
 ## Included skills
 
-| Skill | Use for |
-|-------|--------|
-| **plugin-support-agent** | WordPress plugin support. Looks for `PLUGIN-SUPPORT-DOCS.md` in the project; suggests `functions.php` snippets and minimum plugin changes when appropriate. |
+| Skill | Purpose and behaviour |
+|-------|------------------------|
+| **plugin-support-agent** | WordPress plugin support. Runs a support-engineer workflow: (1) understand the requirement with empathy and critical analysis, (2) answer from `PLUGIN-SUPPORT-DOCS.md` when present, (3) parse plugin code only when the doc is insufficient, (4) suggest `functions.php` snippets or minimum plugin changes instead of editing core. Optional version check when the doc lives at workspace root. |
 
 *More skills (e.g. for themes, SDKs, or other product types) can be added to the `skills/` folder and will be picked up by the plugin.*
 
