@@ -6,13 +6,24 @@ A **tool-agnostic** plugin for **plugin and product maintainers** who want AI-as
 
 **Purpose:** Reduce support load by having the AI answer from a single source of truth (`PLUGIN-SUPPORT-DOCS.md`) and suggest `functions.php` snippets or minimal plugin changes instead of editing core files.
 
-## Included skills
+## What the plugin adds
 
-| Skill | Purpose and behaviour |
-|-------|------------------------|
-| **plugin-support-agent** | WordPress plugin support. Runs a support-engineer workflow: (1) understand the requirement with empathy and critical analysis, (2) answer from `PLUGIN-SUPPORT-DOCS.md` when present, (3) parse plugin code only when the doc is insufficient, (4) suggest `functions.php` snippets or minimum plugin changes instead of editing core. Optional version check when the doc lives at workspace root. |
+| Type | Name | Purpose |
+|------|------|---------|
+| **Rule** | support-engineer | **Full workflow** in one rule (`alwaysApply: true`): understand requirement first, answer from `PLUGIN-SUPPORT-DOCS.md`, parse code only when needed, suggest `functions.php` or minimal plugin changes. Primary instruction for maximum compliance. |
+| **Skill** | plugin-support-agent | Same workflow in skill form (for reference or when the rule is not loaded). |
 
-*More skills (e.g. for themes, SDKs, or other product types) can be added to the `skills/` folder and will be picked up by the plugin.*
+*More skills (e.g. for themes, SDKs) can be added under `skills/` and will be picked up automatically.*
+
+### For maximum compliance (copy rule into your project)
+
+To ensure the support-engineer instructions are **always** applied even if the plugin is not loaded as a remote rule, copy the rule file into your project as a **project-local** rule:
+
+1. Create `.cursor/rules/` in your project root if it doesn't exist.
+2. Copy the rule file from this repo into `.cursor/rules/support-engineer.mdc`.
+   - **Raw file (copy contents):** [rules/support-engineer.mdc](https://raw.githubusercontent.com/nihalhashim/support-engineer-plugin/main/rules/support-engineer.mdc) — open the link, copy the full content, and save as your project's `.cursor/rules/support-engineer.mdc`.
+   - Or clone this repo and copy `rules/support-engineer.mdc` into your project.
+3. The rule has `alwaysApply: true`, so Cursor will include it in context on every request. Same behaviour whether you use the plugin remotely or this local copy.
 
 ## Install (GitHub integration)
 
@@ -31,7 +42,15 @@ Use the **repository URL** — you do not add a specific file. Your IDE/tool use
    - Save. The plugin and `plugin-support-agent` skill will then be available.
 
 3. **Repo structure**  
-   The repo root should contain `.cursor-plugin/plugin.json` and `skills/` (with `skills/plugin-support-agent/SKILL.md`). Cloning or adding the repo URL as above uses this structure so no extra steps are needed.
+   The repo root contains `.cursor-plugin/plugin.json`, `skills/` (plugin-support-agent), and `rules/` (support-engineer). Adding the repo URL as above loads the plugin, skill, and rule; no extra steps are needed.
+
+### If the agent says it has no rules or doesn't follow the plugin
+
+The agent may look for **project-local** rules (e.g. `.cursor/rules/` in the project) and report "no custom rules" even when the plugin is installed. The plugin provides both a **skill** (plugin-support-agent) and a **rule** (support-engineer) that should appear in Cursor’s Rules list after you add the repo.
+
+- **Invoke the skill explicitly** — In Cursor chat, try typing **`/plugin-support-agent`** (if your client supports slash commands) or start your message with “Using the plugin support workflow: …” so the agent applies the skill.
+- **Add a project rule (optional)** — In the project where you need support behaviour, create `.cursor/rules/support.mdc` with: *“For plugin support questions, use the Support Engineer Plugin: understand the requirement first, then answer from PLUGIN-SUPPORT-DOCS.md; only parse code when the doc is insufficient.”* That gives the agent a project-local rule that points to the workflow.
+- **Confirm the plugin is loaded** — In Cursor Settings → Rules, check that the remote rule (this repo) is listed and enabled.
 
 ### Manual (copy skill into your project)
 
