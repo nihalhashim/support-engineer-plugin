@@ -12,5 +12,6 @@
     "documentation",
     "customer-support"
   ],
+  "rules": "rules/",
   "skills": "skills/"
 }

@@ -15,15 +15,34 @@ A **tool-agnostic** plugin for **plugin and product maintainers** who want AI-as
 
 *More skills (e.g. for themes, SDKs) can be added under `skills/` and will be picked up automatically.*
 
-### For maximum compliance (copy rule into your project)
+### Set project rules using the plugin (recommended for maximum compliance)
 
-To ensure the support-engineer instructions are **always** applied even if the plugin is not loaded as a remote rule, copy the rule file into your project as a **project-local** rule:
+To have the support-engineer instructions **always** applied as **project-local** rules (in `.cursor/rules/`), use either method below. The rule has `alwaysApply: true`, so Cursor will include it in context on every request.
 
-1. Create `.cursor/rules/` in your project root if it doesn't exist.
-2. Copy the rule file from this repo into `.cursor/rules/support-engineer.mdc`.
-   - **Raw file (copy contents):** [rules/support-engineer.mdc](https://raw.githubusercontent.com/nihalhashim/support-engineer-plugin/main/rules/support-engineer.mdc) — open the link, copy the full content, and save as your project's `.cursor/rules/support-engineer.mdc`.
-   - Or clone this repo and copy `rules/support-engineer.mdc` into your project.
-3. The rule has `alwaysApply: true`, so Cursor will include it in context on every request. Same behaviour whether you use the plugin remotely or this local copy.
+**Option A — Install script (from this repo):**
+
+1. Clone this repo or download the script.
+2. From your **project root** (the app or plugin you want support for), run:
+   ```bash
+   /path/to/support-engineer-plugin/scripts/install-rules.sh
+   ```
+   Or, if your project has the plugin as a submodule or in a subfolder:
+   ```bash
+   ./cursor-support-plugin/scripts/install-rules.sh
+   ```
+   The script creates `.cursor/rules/` if needed and copies `support-engineer.mdc` into it.
+
+**Option B — One-liner (no clone):**
+
+From your project root, run:
+
+```bash
+mkdir -p .cursor/rules && curl -sSL -o .cursor/rules/support-engineer.mdc https://raw.githubusercontent.com/nihalhashim/support-engineer-plugin/main/rules/support-engineer.mdc
+```
+
+(Use your fork's URL and branch if different.)
+
+**Manual copy:** You can still [download the rule file](https://raw.githubusercontent.com/nihalhashim/support-engineer-plugin/main/rules/support-engineer.mdc) and save it as `.cursor/rules/support-engineer.mdc`.
 
 ## Install (GitHub integration)
 
