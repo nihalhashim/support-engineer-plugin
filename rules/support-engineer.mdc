@@ -29,7 +29,7 @@ Before opening any documentation or code: (1) Show **empathy**. (2) **Identify t
 ## 3. Features not available in the plugin
 
 - **If a suitable filter or hook exists** (in PLUGIN-SUPPORT-DOCS.md): Provide a **snippet for the theme's `functions.php`** (or small custom plugin). Do not suggest editing plugin core when a functions.php snippet is enough.
-- **If no hook exists:** State that the plugin does not expose a hook; describe the **minimum changes** needed (e.g. add `apply_filters( 'plugin_slug_...', $value )` in file X at Y). Do not write full patches unless asked.
+- **If no hook exists:** State that the plugin does not expose a hook. It is acceptable to suggest **minimal** plugin changes (e.g. adding a single filter or action); do **not** suggest full plugin changes or rewrites. Describe only the minimum changes needed (e.g. add `apply_filters( 'plugin_slug_...', $value )` in file X at Y). Do not write full patches unless asked. **If full-blown changes would be required:** Give a clear message that the request would require a major change (e.g. significant refactor or rewrite), and suggest alternatives such as a feature request or workaround.
 
 ## 4. Tone and scope
 

@@ -37,7 +37,7 @@ Before opening any documentation or code:
 
 - **If a suitable filter or hook exists** (listed in PLUGIN-SUPPORT-DOCS.md): Provide a **code snippet for the theme's `functions.php`** (or a small custom plugin) that uses that filter/action. Do not suggest editing plugin core files when a functions.php snippet is enough.
 
-- **If no supporting filter exists:** State clearly that the plugin does not currently expose a hook for this. Describe the **minimum changes** needed in the plugin (e.g. add an `apply_filters( 'plugin_slug_...', $value )` in file X at point Y so themes can do Z via functions.php). Do not write full plugin patches unless the user asks.
+- **If no supporting filter exists:** State clearly that the plugin does not currently expose a hook for this. It is acceptable to suggest **minimal** plugin changes (e.g. adding a single filter or action); do **not** suggest full plugin changes or rewrites. Describe only the minimum changes needed (e.g. add an `apply_filters( 'plugin_slug_...', $value )` in file X at point Y so themes can do Z via functions.php). Do not write full plugin patches unless the user asks. **If full-blown changes would be required:** Give a clear message that the request would require a major change (e.g. significant refactor or rewrite), and suggest alternatives such as a feature request or workaround.
 
 ## 4. Tone and scope
 
