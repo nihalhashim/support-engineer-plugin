@@ -68,7 +68,8 @@ Use the **repository URL** — you do not add a specific file. Your IDE/tool use
 The agent may look for **project-local** rules (e.g. `.cursor/rules/` in the project) and report "no custom rules" even when the plugin is installed. The plugin provides both a **skill** (plugin-support-agent) and a **rule** (support-engineer) that should appear in Cursor’s Rules list after you add the repo.
 
 - **Invoke the skill explicitly** — In Cursor chat, try typing **`/plugin-support-agent`** (if your client supports slash commands) or start your message with “Using the plugin support workflow: …” so the agent applies the skill.
-- **Add a project rule (optional)** — In the project where you need support behaviour, create `.cursor/rules/support.mdc` with: *“For plugin support questions, use the Support Engineer Plugin: understand the requirement first, then answer from PLUGIN-SUPPORT-DOCS.md; only parse code when the doc is insufficient.”* That gives the agent a project-local rule that points to the workflow.
+- **Add the rule to this project** — Run the install script or one-liner from **Set project rules using the plugin** above to add the support-engineer rule to `.cursor/rules/`.
+- **Or add the skill for per-project behavior** — See **Manual (copy skill into your project)** below.
 - **Confirm the plugin is loaded** — In Cursor Settings → Rules, check that the remote rule (this repo) is listed and enabled.
 
 ### Manual (copy skill into your project)
