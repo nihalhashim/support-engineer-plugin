@@ -1,40 +1,47 @@
 #!/usr/bin/env bash
 # Install Support Engineer Plugin rules into the current project's .cursor/rules/
-# Run from your project root: ./path/to/install-rules.sh
-# Or from this repo: ./scripts/install-rules.sh (when run from a project that contains or is the plugin)
+#
+# One-liner (no clone) — run from your project root:
+#   mkdir -p .cursor/rules && curl -sSL -o .cursor/rules/support-engineer.mdc https://raw.githubusercontent.com/nihalhashim/support-engineer-plugin/main/rules/support-engineer.mdc
+#
+# Or run this script: ./path/to/install-rules.sh
 
 set -e
 
 RULES_DIR=".cursor/rules"
 RULE_FILE="support-engineer.mdc"
 
-# Default: use raw GitHub URL (works from any project)
+# Primary: download from raw URL (no clone required)
 REPO="${SUPPORT_PLUGIN_REPO:-https://github.com/nihalhashim/support-engineer-plugin}"
 BRANCH="${SUPPORT_PLUGIN_BRANCH:-main}"
-# Replace github.com with raw host (no trailing slash to avoid double slash before path)
 GITHUB_HOST="https://github.com"
 RAW_HOST="https://raw.githubusercontent.com"
 RAW_URL="${REPO/$GITHUB_HOST/$RAW_HOST}/$BRANCH/rules/$RULE_FILE"
 
-# If we're inside the plugin repo, copy locally
+mkdir -p "$RULES_DIR"
+if command -v curl >/dev/null 2>&1; then
+  if curl -sSL -o "$RULES_DIR/$RULE_FILE" "$RAW_URL"; then
+    echo "Installed rule: $RULES_DIR/$RULE_FILE"
+    exit 0
+  fi
+elif command -v wget >/dev/null 2>&1; then
+  if wget -q -O "$RULES_DIR/$RULE_FILE" "$RAW_URL"; then
+    echo "Installed rule: $RULES_DIR/$RULE_FILE"
+    exit 0
+  fi
+fi
+
+# Fallback: if we're inside the plugin repo, copy locally (no network needed)
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PLUGIN_RULES="$SCRIPT_DIR/../rules/$RULE_FILE"
 if [ -f "$PLUGIN_RULES" ]; then
-  mkdir -p "$RULES_DIR"
   cp "$PLUGIN_RULES" "$RULES_DIR/$RULE_FILE"
   echo "Installed rule from plugin repo: $RULES_DIR/$RULE_FILE"
   exit 0
 fi
 
-# Otherwise download from GitHub
-mkdir -p "$RULES_DIR"
-if command -v curl >/dev/null 2>&1; then
-  curl -sSL -o "$RULES_DIR/$RULE_FILE" "$RAW_URL"
-elif command -v wget >/dev/null 2>&1; then
-  wget -q -O "$RULES_DIR/$RULE_FILE" "$RAW_URL"
-else
+# No curl/wget or download failed and not in plugin repo
+if ! command -v curl >/dev/null 2>&1 && ! command -v wget >/dev/null 2>&1; then
   echo "Need curl or wget to download the rule." >&2
-  exit 1
 fi
-
-echo "Installed rule: $RULES_DIR/$RULE_FILE"
+exit 1

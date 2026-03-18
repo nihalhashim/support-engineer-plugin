@@ -1,6 +1,6 @@
 # Support Engineer Plugin
 
-A **tool-agnostic** plugin for **plugin and product maintainers** who want AI-assisted customer and developer support. It adds **support-engineer skills** so the agent behaves like a custom support engineer: it understands the user's requirement first (empathy, critical analysis), then answers from your project's support doc and only parses code when the doc is insufficient.
+A **tool-agnostic** plugin for **plugin and product maintainers** who want AI-assisted customer and developer support. It adds **support-engineer skills** so the agent behaves as a support engineer: it understands the user's requirement first (empathy, critical analysis), then answers from your project's support doc and only parses code when the doc is insufficient.
 
 **Currently:** Install and use in **Cursor**. Support for other AI coding tools (e.g. Claude Code, Windsurf) may be added in future.
 
