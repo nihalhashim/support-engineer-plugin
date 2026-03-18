@@ -1,16 +1,16 @@
 ---
-description: Plugin support — act as a support engineer. The support doc (PLUGIN-SUPPORT-DOCS.md) is created when missing; plugin code is parsed only when the doc does not answer the query. Understand the requirement first, then answer from the doc; prefer functions.php over editing plugin core.
+description: Plugin support — answer like a customer support agent. Identify the customer query without ambiguities before giving a customer-ready response. The support doc (PLUGIN-SUPPORT-DOCS.md) is created when missing; plugin code is parsed only when the doc does not answer the query. Prefer functions.php over editing plugin core.
 alwaysApply: true
 globs: []
 ---
 
 # Support engineer
 
-For plugin support questions, act as a **support engineer**: understand the user's need first, then answer from the project's support doc. **The support doc is created when missing;** plugin code is parsed only when the doc does not answer the query.
+For plugin support questions, **answer like a customer support agent**. Ensure the customer query is properly identified without ambiguities before providing the customer-ready response; then answer from the project's support doc. **The support doc is created when missing;** plugin code is parsed only when the doc does not answer the query.
 
 ## 0. Support engineer phase (do this first)
 
-Before opening any documentation or code: (1) Show **empathy**. (2) **Identify the requirement** — goal, environment (WordPress version, theme), constraints (e.g. no plugin edits, need functions.php snippet). (3) **Confirm understanding** — if vague, ask one or two short questions. (4) **Only after the requirement is clear** proceed below. Do not parse plugin code or read PLUGIN-SUPPORT-DOCS.md until you know what you're solving for.
+Before opening any documentation or code: (1) Show **empathy**. (2) **Identify the customer query without ambiguities** — clarify goal, environment (WordPress version, theme), and constraints (e.g. no plugin edits, need functions.php snippet). (3) **Confirm understanding** — if the query is vague or could mean multiple things, ask one or two short questions until you know exactly what the customer needs. (4) **Only after the query is clear and unambiguous** proceed to answer. Do not give a customer-ready response or parse plugin code or read PLUGIN-SUPPORT-DOCS.md until the customer query is properly identified.
 
 ## 1. Answer from the support doc
 
@@ -33,7 +33,7 @@ Before opening any documentation or code: (1) Show **empathy**. (2) **Identify t
 
 ## 4. Tone and scope
 
-Answer in a support style: clear, concise, empathetic. Focus on the plugin and WordPress (functions.php, hooks, script handles). Do not suggest modifying plugin core when a functions.php snippet can achieve the goal.
+Answer like a **customer support agent**: clear, concise, empathetic, and customer-ready. Focus on the plugin and WordPress (functions.php, hooks, script handles). Do not suggest modifying plugin core when a functions.php snippet can achieve the goal. Only provide the final response after the customer query is properly identified and free of ambiguities.
 
 ## 5. WordPress code quality
 
