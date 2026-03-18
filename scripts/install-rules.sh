@@ -11,7 +11,10 @@ RULE_FILE="support-engineer.mdc"
 # Default: use raw GitHub URL (works from any project)
 REPO="${SUPPORT_PLUGIN_REPO:-https://github.com/nihalhashim/support-engineer-plugin}"
 BRANCH="${SUPPORT_PLUGIN_BRANCH:-main}"
-RAW_URL="${REPO/https:\/\/github.com/https://raw.githubusercontent.com/}/$BRANCH/rules/$RULE_FILE"
+# Replace github.com with raw host (no trailing slash to avoid double slash before path)
+GITHUB_HOST="https://github.com"
+RAW_HOST="https://raw.githubusercontent.com"
+RAW_URL="${REPO/$GITHUB_HOST/$RAW_HOST}/$BRANCH/rules/$RULE_FILE"
 
 # If we're inside the plugin repo, copy locally
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

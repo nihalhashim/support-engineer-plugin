@@ -44,6 +44,36 @@ mkdir -p .cursor/rules && curl -sSL -o .cursor/rules/support-engineer.mdc https:
 
 **Manual copy:** You can still [download the rule file](https://raw.githubusercontent.com/nihalhashim/support-engineer-plugin/main/rules/support-engineer.mdc) and save it as `.cursor/rules/support-engineer.mdc`.
 
+### Set project skills (install the plugin-support-agent skill)
+
+To add the **plugin-support-agent** skill to your project’s `.cursor/skills/` so the agent can use it, run one of the following.
+
+**Option A — Install script (from this repo):**
+
+From your **project root**, run:
+
+```bash
+/path/to/support-engineer-plugin/scripts/install-skills.sh
+```
+
+Or, if your project has the plugin as a submodule or in a subfolder:
+
+```bash
+./cursor-support-plugin/scripts/install-skills.sh
+```
+
+The script creates `.cursor/skills/plugin-support-agent/` and copies `SKILL.md` into it.
+
+**Option B — One-liner (no clone):**
+
+From your project root, run:
+
+```bash
+mkdir -p .cursor/skills/plugin-support-agent && curl -sSL -o .cursor/skills/plugin-support-agent/SKILL.md https://raw.githubusercontent.com/nihalhashim/support-engineer-plugin/main/skills/plugin-support-agent/SKILL.md
+```
+
+(Use your fork’s URL and branch if different.)
+
 ## Install (GitHub integration)
 
 Use the **repository URL** — you do not add a specific file. Your IDE/tool uses the whole repo to load the plugin and its skills.
@@ -74,10 +104,11 @@ The agent may look for **project-local** rules (e.g. `.cursor/rules/` in the pro
 
 ### Manual (copy skill into your project)
 
-If you prefer not to use GitHub:
+If you prefer not to use GitHub or the install script:
 
 1. Copy the **folder** `skills/plugin-support-agent/` (including its `SKILL.md`) into your project’s skills directory (e.g. `.cursor/skills/` in Cursor).
-2. The agent will discover the skill when working in that project.
+2. Or run the **install-skills** script or one-liner from **Set project skills** above.
+3. The agent will discover the skill when working in that project.
 
 ### From marketplace (optional, when published)
 
